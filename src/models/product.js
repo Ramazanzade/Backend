@@ -6,7 +6,10 @@ const ProductSchema = new Schema({
   age: String,
   live: String,
   fin: String,
-  work: String
+  work: String,
+  digital:Number,
+  email:String,
+  amount:Number
 });
 
 const producta = model('Product', ProductSchema);

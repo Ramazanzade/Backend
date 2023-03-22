@@ -10,7 +10,10 @@ const productController = {
       age: body.age,
       live: body.live,
       fin: body.fin,
-      work: body.work
+      work: body.work,
+      digital:body.digital,
+      email:body.email,
+      amount:body.amount
     });
 
     try {
@@ -21,13 +24,19 @@ const productController = {
     }
   },
   getAll: async (req, res) => {
-    const products = await producta.find();
-    if (products.length > 0) {
-      res.send(products);
-    } else {
-      res.send({ result: 'No User foud' });
+    try {
+        const products = await producta.find();
+        if (products.length > 0) {
+            res.send(products);
+        } else {
+            res.status(404).send({ error: 'No products found' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ error: 'Internal server error' });
     }
-  },
+},
+
   delete: async (req, res) => {
     try {
       const result = await producta.deleteOne({ _id: req.params.id });
