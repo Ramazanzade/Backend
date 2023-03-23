@@ -1,3 +1,4 @@
+app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 const express=require('express')
 const { CONNECTION_STRING}=require('./config')
 const {mongoose}= require('mongoose')
@@ -13,8 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 mongoose.connect(CONNECTION_STRING)
 .then(res=>console.log('connect'))
 .catch(err=>console.log(err))
-app.options("*", cors({ origin: 'http://localhost:19007', optionsSuccessStatus: 200 }));
-app.use(cors({ origin: "http://localhost:19007", optionsSuccessStatus: 200 }));
+// app.options("*", cors({ origin: 'http://localhost:19007', optionsSuccessStatus: 200 }));
 app.use('/api/product',productRouters)
 app.use('/api/user',userRouter);
 
