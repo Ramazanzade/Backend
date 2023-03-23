@@ -7,6 +7,7 @@ require('dotenv').config();
 const productRouters = require('./api/routers/productRouters')
 const userRouter = require('./api/routers/user');
 const User = require('./models/user');
+const newsrouter =require('./api/routers/newsrouter')
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -17,6 +18,8 @@ app.options("*", cors({ origin: 'http://localhost:19007', optionsSuccessStatus: 
 app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 app.use('/api/product',productRouters)
 app.use('/api/user',userRouter);
+app.use('/api/new',newsrouter);
+
 
 
 app.use((err,req,res,next)=>{
