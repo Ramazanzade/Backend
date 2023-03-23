@@ -1,14 +1,14 @@
-app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 const express=require('express')
 const { CONNECTION_STRING}=require('./config')
 const {mongoose}= require('mongoose')
 var cors = require('cors')
 const app = express()
+app.use(cors())
 require('dotenv').config();
+app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 const productRouters = require('./api/routers/productRouters')
 const userRouter = require('./api/routers/user');
 const User = require('./models/user');
-app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 mongoose.connect(CONNECTION_STRING)
