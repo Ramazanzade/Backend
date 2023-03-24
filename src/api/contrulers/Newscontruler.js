@@ -5,7 +5,7 @@ const Newscontruler = {
   add: async (req, res) => {
     const body = req.body;
     let product = new news({
-      title: body.title,
+     title: body.title,
       date: body.date,
       text: body.text,
       title1: body.title1,
@@ -54,6 +54,13 @@ const Newscontruler = {
     } else {
       res.send('Not changed');
     }
+  },
+  put: async (req, res) => {
+    const result = await news.updateOne(
+      { _id: req.params.id },
+      { $set: req.body }
+    );
+    res.send(result);
   },
 };
 
