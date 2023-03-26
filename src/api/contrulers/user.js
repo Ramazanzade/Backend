@@ -138,7 +138,8 @@ exports.signOut = async (req, res) => {
 
 exports.GetAll = async(req,res)=>{
   const users= await User.find()
-  res.json({ success: true, users });
+  // res.json({ success: true, users });
+  res.send(users);
 }
 
 
