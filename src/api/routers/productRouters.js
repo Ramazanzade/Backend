@@ -7,7 +7,7 @@ router.get('/products', productController.getAll)
 router.get('/product/:id', productController.update)
 router.delete('/product/:id', productController.delete)
 router.put('/product/:id', productController.put);
-app.get('/productsd', async (req, res) => {
+router.get('/productsd', async (req, res) => {
     try {
       const { name, fin, email } = req.query;
       const products = await producta.find({ name, fin, email });
