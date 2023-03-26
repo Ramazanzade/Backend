@@ -27,7 +27,7 @@ const fileFilter = (req, file, cb) => {
 };
 const uploads = multer({ storage, fileFilter });
 
-router.post('/create-user', userVlidation, createUser);
+router.post('/create-user', validateUserSignUp, userVlidation, createUser);
 router.post('/sign-in', validateUserSignIn, userVlidation, userSignIn);
 router.post('/sign-out', isAuth, signOut);
 router.post(
