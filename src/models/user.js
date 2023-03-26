@@ -13,7 +13,6 @@ const userSchema = new mongoose.Schema({
   },
   surname: {
     type: String,
-    required: true,
   },
   fin: {
     type: String,
@@ -21,23 +20,18 @@ const userSchema = new mongoose.Schema({
   },
   age: {
     type: Number,
-    required: true,
   }, 
   live: {
     type: String,
-    required: true,
   }, 
   work: {
     type: String,
-    required: true,
   },
   digital: {
     type: Number,
-    required: true,
   },
   amount: {
     type: Number,
-    required: true,
   },
   avatar: String,
   tokens: [{ type: Object }],
