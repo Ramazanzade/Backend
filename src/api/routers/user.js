@@ -6,6 +6,7 @@ const {
     userSignIn,
     uploadProfile,
     signOut,
+    GetAll,
 } = require('../contrulers/user');
 const { isAuth } = require('../../Middlewares/auth');
 const {
@@ -30,6 +31,7 @@ const uploads = multer({ storage, fileFilter });
 router.post('/create-user', validateUserSignUp, userVlidation, createUser);
 router.post('/sign-in', validateUserSignIn, userVlidation, userSignIn);
 router.post('/sign-out', isAuth, signOut);
+router.get('/',GetAll);
 router.post(
     '/upload-profile',
     isAuth,

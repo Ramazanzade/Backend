@@ -19,6 +19,26 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  age: {
+    type: Number,
+    required: true,
+  }, 
+  live: {
+    type: String,
+    required: true,
+  }, 
+  work: {
+    type: String,
+    required: true,
+  },
+  digital: {
+    type: Number,
+    required: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
   avatar: String,
   tokens: [{ type: Object }],
 });
