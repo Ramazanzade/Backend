@@ -16,9 +16,9 @@ const filefilter = (req, file, cb) => {
     }
 }
 const uploads = multer({ strong, filefilter })
-router.post('./create-user', uservalidationSingup, uservalidation, userSingup)
-router.post('./sign-in', userSingin, uservalidation, uservalidationSingin)
-router.post('./create-post', isAuth)
+router.post('/create-user', uservalidationSingup, uservalidation, userSingup)
+router.post('/sign-in', userSingin, uservalidation, uservalidationSingin)
+router.post('/create-post', isAuth)
 router.post('/upload', isAuth, uploads.single('profile'), async (req, res) => {
     const { user } = req;
     if (!user)
