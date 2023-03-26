@@ -67,7 +67,7 @@ const productController = {
       $or: [
         { fin: { $regex: new RegExp(req.params.key) } },
         { name: { $regex: new RegExp(req.params.key) } },
-        { surname: { $regex: new RegExp(req.params.key) } },
+        { email: { $regex: new RegExp(req.params.key) } },
         { age: { $regex: new RegExp(req.params.key) } },
         { work: { $regex: new RegExp(req.params.key) } },
         { live: { $regex: new RegExp(req.params.key) } }
