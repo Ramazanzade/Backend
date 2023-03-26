@@ -26,7 +26,7 @@ exports.validateUserSignUp = [
         .isEmpty()
         .withMessage('Fin is empty!')
         .isLength({ min: 3, max: 20 })
-        .withMessage('Password must be 3 to 20 characters long!'),
+        .withMessage('Fin must be 3 to 20 characters long!'),
 
 ];
 
@@ -40,12 +40,8 @@ exports.userVlidation = (req, res, next) => {
 
 exports.validateUserSignIn = [
     check('fin')
-        .trim()
-        .not()
-        .isEmpty()
-        .withMessage('Name is required!')
-        .isString()
-        .withMessage('Must be a valid name!')
-        .isLength({ min: 3, max: 20 })
-        .withMessage('Name must be within 3 to 20 character!'),
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage('fin is required!'),
 ];
