@@ -138,9 +138,18 @@ exports.signOut = async (req, res) => {
 
 exports.GetAll = async(req,res)=>{
   const users= await User.find()
-  // res.json({ success: true, users });
   res.send(users);
 }
 
+
+exports.Delete = async (req, res) => {
+  try {
+    const result = await User.deleteOne({ _id: req.params.id });
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+}
 
 
