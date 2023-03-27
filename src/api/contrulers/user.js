@@ -39,20 +39,41 @@ exports.userSignIn = async (req, res) => {
     }
   
     if (!user.comparefin) {
-      return res.json({
+      return res.status(500).json({
         success: false,
         message: 'comparefin method not defined on User model!',
       });
     }
-  
-    const isMatch = await user.comparefin(fin);
-  
-    if (!isMatch) {
-      return res.json({
+
+    if (!fin) {
+      return res.status(400).json({
         success: false,
-        message: 'fin does not match!',
+        message: 'fin value not provided in request body!',
       });
     }
+    
+    try {
+      const isMatch = await user.comparefin(fin);
+    
+      if (!isMatch) {
+        return res.status(401).json({
+          success: false,
+          message: 'fin does not match!',
+        });
+      }
+    
+      return res.status(200).json({
+        success: true,
+        message: 'fin matches!',
+      });
+    } catch (error) {
+      console.error('Error while comparing fin:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Internal server error while comparing fin',
+      });
+    }
+    
     let token;
     try { 
       token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET  || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9', {
