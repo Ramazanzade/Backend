@@ -8,6 +8,8 @@ const {
     signOut,
     GetAll,
     Delete,
+    Upload,
+    Put,
 } = require('../contrulers/user');
 const { isAuth } = require('../../Middlewares/auth');
 const {
@@ -40,6 +42,9 @@ router.post(
     uploadProfile
 );
 router.delete('/delete/:id',Delete);
+router.get('/upload/:id',Upload)
+router.put('/put/:id',Put)
+
 // router.post('/confrim ' ,async(req,res)=>{
 //     try {
 //        const {email} =req.body

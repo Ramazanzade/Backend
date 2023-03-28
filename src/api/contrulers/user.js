@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 const sharp = require('sharp');
+const user = require('../../models/user');
 require('dotenv').config();
 // const cloudinary = require('../helper/imageUpload'
 exports.createUser = async (req, res) => {
@@ -171,4 +172,22 @@ exports.Delete = async (req, res) => {
 //   }
 // }
 
+
+exports.Upload = async (req,res)=>{
+  const result = await User.findOne({ _id: req.params.id });
+  if (result) {
+    res.send(result);
+  } else {
+    res.send('Not changed');
+  }
+}
+
+
+exports.Put = async (req,res)=>{
+  const result = await User.updateOne(
+    { _id: req.params.id },
+    { $set: req.body }
+  );
+  res.send(result);
+}
 
