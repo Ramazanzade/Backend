@@ -173,21 +173,29 @@ exports.Delete = async (req, res) => {
 // }
 
 
-exports.Upload = async (req,res)=>{
-  const result = await User.findOne({ _id: req.params.id });
-  if (result) {
-    res.send(result);
-  } else {
-    res.send('Not changed');
+exports.Upload = async (req, res) => {
+  try {
+    const result = await User.findById(req.params.id);
+    if (result) {
+      res.send(result);
+    } else {
+      res.send('Not found');
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 }
 
-
-exports.Put = async (req,res)=>{
-  const result = await User.updateOne(
-    { _id: req.params.id },
-    { $set: req.body }
-  );
-  res.send(result);
+exports.Put = async (req, res) => {
+  try {
+    const result = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (result) {
+      res.send(result);
+    } else {
+      res.send('Not found');
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 }
 
