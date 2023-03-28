@@ -1,4 +1,5 @@
 const express = require('express');
+const User = require('../../models/user');
 
 const router = express.Router();
 const {
@@ -42,9 +43,27 @@ router.post(
     uploadProfile
 );
 router.delete('/delete/:id',Delete);
-router.get('/upload/:id',Upload)
-router.put('/put/:id',Put)
-
+router.post('/users/:id/upload', async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+      if (user) {
+        res.send(user);
+      } else {
+        res.send('User not found');
+      }
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
+  router.put('/users/:id', async (req, res) => {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      res.send(updatedUser);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
+  
 // router.post('/confrim ' ,async(req,res)=>{
 //     try {
 //        const {email} =req.body
