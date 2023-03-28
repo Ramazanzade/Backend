@@ -4,7 +4,7 @@ const sharp = require('sharp');
 require('dotenv').config();
 // const cloudinary = require('../helper/imageUpload'
 exports.createUser = async (req, res) => {
-    const { name, email, fin, surname, amount,age,live,work, digital} = req.body;
+    const { name, email, fin, surname, amount,age,live,work, digital,digital1,avatar} = req.body;
     const isNewUser = await User.isThisEmailInUse(email);
     if (!isNewUser)
         return res.json({
@@ -20,14 +20,16 @@ exports.createUser = async (req, res) => {
         age,
         live,
         work, 
-        digital  
+        digital,
+        digital1,
+        avatar  
     });
     await user.save();
     res.json({ success: true, user });
 };
 
 exports.userSignIn = async (req, res) => {
-    const { email, name, fin, work } = req.body;
+    const { email, name, fin, work,digital,digital1,live, age, amount,avatar} = req.body;
   
     const user = await User.findOne({ email });
   
@@ -74,7 +76,13 @@ exports.userSignIn = async (req, res) => {
       email: user.email,
       fin: user.fin,
       surname: user.surname,
-      work:user.work
+      work:user.work,
+      digital:user.digital,
+      digital1:user.digital1,
+      age:user.age,
+      live:user.live,
+      amount:user.amount,
+      avatar:user.avatar
     };
   
     res.json({ success: true, user: userInfo, token });

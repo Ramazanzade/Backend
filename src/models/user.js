@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   age: {
-    type: Number,
+    type: String,
   }, 
   live: {
     type: String,
@@ -28,6 +28,9 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   digital: {
+    type: Number,
+  },
+  digital1: {
     type: Number,
   },
   amount: {
