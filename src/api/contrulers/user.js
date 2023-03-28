@@ -27,7 +27,7 @@ exports.createUser = async (req, res) => {
 };
 
 exports.userSignIn = async (req, res) => {
-    const { email, name, fin } = req.body;
+    const { email, name, fin, work } = req.body;
   
     const user = await User.findOne({ email });
   
@@ -37,42 +37,6 @@ exports.userSignIn = async (req, res) => {
         message: 'User not found with the given email!',
       });
     }
-  
-    // if (!user.comparefin) {
-    //   return res.status(500).json({
-    //     success: false,
-    //     message: 'comparefin method not defined on User model!',
-    //   });
-    // }
-
-    // if (!fin) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: 'fin value not provided in request body!',
-    //   });
-    // }
-    
-    // try {
-    //   const isMatch = await user.comparefin(fin);
-    
-    //   if (!isMatch) {
-    //     return res.status(401).json({
-    //       success: false,
-    //       message: 'fin does not match!',
-    //     });
-    //   }
-    
-    //   return res.status(200).json({
-    //     success: true,
-    //     message: 'fin matches!',
-    //   });
-    // } catch (error) {
-    //   console.error('Error while comparing fin:', error);
-    //   return res.status(500).json({
-    //     success: false,
-    //     message: 'Internal server error while comparing fin',
-    //   });
-    // }
     const isMatch = await user.comparefin(fin);
     
     if (!isMatch) {
@@ -110,6 +74,7 @@ exports.userSignIn = async (req, res) => {
       email: user.email,
       fin: user.fin,
       surname: user.surname,
+      work:user.work
     };
   
     res.json({ success: true, user: userInfo, token });
@@ -179,5 +144,23 @@ exports.Delete = async (req, res) => {
     res.status(500).send(error);
   }
 }
+
+
+// exports.Confrim = async (email)=>{
+//   try {
+//     const existinguser = await User.findOne({email})
+//     if(!existinguser){
+//       throw Error('There no account for the provided email or fin')
+//     }
+//     const optdetails ={
+//       email,
+//       subject:'Email Confrim',
+//       message:"Confrim your email with the code below",
+//       duration:1
+//     }
+//   } catch (error) {
+    
+//   }
+// }
 
 

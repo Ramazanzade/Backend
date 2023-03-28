@@ -7,6 +7,7 @@ const {
     uploadProfile,
     signOut,
     GetAll,
+    Delete,
 } = require('../contrulers/user');
 const { isAuth } = require('../../Middlewares/auth');
 const {
@@ -38,5 +39,14 @@ router.post(
     uploads.single('profile'),
     uploadProfile
 );
+router.delete('/delete/:id',Delete);
+// router.post('/confrim ' ,async(req,res)=>{
+//     try {
+//        const {email} =req.body
+//        if(!email) throw Error("email is required!") 
+//     } catch (error) {
+        
+//     }
+// })
 
 module.exports = router;
