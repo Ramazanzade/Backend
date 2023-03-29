@@ -43,34 +43,22 @@ router.post(
     uploadProfile
 );
 router.delete('/delete/:id',Delete);
-router.post('/users/:id/upload', async (req, res) => {
-    try {
-      const user = await User.findById(req.params.id);
-      if (user) {
-        res.send(user);
-      } else {
-        res.send('User not found');
-      }
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
+router.get('/users/:id', async (req, res) => {
+  const result =await User.findOne({_id:req.params.id})
+  if(result){
+    res.send(result)
+  }else{
+    res.send({"result":"Not update"})
+  }
+
   });
   router.put('/users/:id', async (req, res) => {
-    try {
-      const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-      res.send(updatedUser);
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
+   
+      const updatedUser = await User.updateOne({_id:req.params.id},{$set:req.body})
+      res.send(updatedUser)
+   
   });
   
-// router.post('/confrim ' ,async(req,res)=>{
-//     try {
-//        const {email} =req.body
-//        if(!email) throw Error("email is required!") 
-//     } catch (error) {
-        
-//     }
-// })
+
 
 module.exports = router;
