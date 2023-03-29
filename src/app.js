@@ -7,7 +7,7 @@ require('dotenv').config();
 const productRouters = require('./api/routers/productRouters')
 const userRouter = require('./api/routers/user');
 const User = require('./models/user');
-const newsrouter =require('./api/routers/newsrouter')
+const newsrouter =require('./api/routers/newsrouter')  
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
