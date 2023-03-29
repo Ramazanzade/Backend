@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../../models/user');
+const cors = require('cors');
 
 const router = express.Router();
 const {
@@ -53,8 +54,12 @@ router.get('/users/:id', async (req, res) => {
 
   });
 
-//   router.options('/users/:id', cors());
-
+  router.use(cors());
+  router.options('/users/:id', (req, res) => {
+    res.header('Access-Control-Allow-Methods', 'PUT');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.send();
+  });
   router.put('/users/:id', async (req, res) => {
    
       const updatedUser = await User.updateOne({_id:req.params.id},{$set:req.body})
