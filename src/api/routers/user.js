@@ -52,6 +52,9 @@ router.get('/users/:id', async (req, res) => {
   }
 
   });
+
+//   router.options('/users/:id', cors());
+
   router.put('/users/:id', async (req, res) => {
    
       const updatedUser = await User.updateOne({_id:req.params.id},{$set:req.body})

@@ -16,6 +16,18 @@ mongoose.connect(CONNECTION_STRING)
 .catch(err=>console.log(err))
 // app.options("*", cors({ origin: ['http://localhost:19008', 'http://localhost:8082'], optionsSuccessStatus: 200 }));
 app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Methods', 'PUT');
+    next();
+  });
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+  });
+  
 app.use('/api/product',productRouters)
 app.use('/api/user',userRouter);
 app.use('/api/new',newsrouter);
