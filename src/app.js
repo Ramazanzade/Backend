@@ -4,7 +4,7 @@ const {mongoose}= require('mongoose')
 var cors = require('cors')
 const app = express()
 require('dotenv').config();
-const productRouters = require('./api/routers/productRouters')
+// const productRouters = require('./api/routers/productRouters')
 const userRouter = require('./api/routers/user');
 const User = require('./models/user');
 const newsrouter =require('./api/routers/newsrouter')  
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
     next();
   });
   
-app.use('/api/product',productRouters)
+// app.use('/api/product',productRouters)
 app.use('/api/user',userRouter);
 app.use('/api/new',newsrouter);
 
