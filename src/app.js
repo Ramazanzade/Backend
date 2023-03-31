@@ -16,7 +16,7 @@ mongoose.connect(CONNECTION_STRING)
 .catch(err=>console.log(err))
 // app.options('*', cors());
 
-app.options(cors({ origin:'https://bankapi-2puz.onrender.com', optionsSuccessStatus: 200 ,   credentials: true,}));
+app.options(cors({ origin: ['http://localhost:19006', 'http://localhost:8082', 'https://bankapi-2puz.onrender.com'], optionsSuccessStatus: 200 }));
 // app.use(function(req, res, next) {
 //   res.header('Access-Control-Allow-Origin', '*');
 //   res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, PUT, POST, DELETE');
