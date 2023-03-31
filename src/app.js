@@ -14,17 +14,16 @@ app.use(express.urlencoded({ extended: true }))
 mongoose.connect(CONNECTION_STRING)
 .then(res=>console.log('connect'))
 .catch(err=>console.log(err))
-// app.options("*", cors({ origin: ['http://localhost:19006', 'http://localhost:8082', 'https://bankapi-2puz.onrender.com'], optionsSuccessStatus: 200 }));
-app.use(cors({ origin: 'http://localhost:19006'}));
-// app.options('*', cors());
+app.options("*", cors({ origin: ['http://localhost:19007', 'http://localhost:8082', 'https://bankapi-2puz.onrender.com'], optionsSuccessStatus: 200 }));
+app.options('*', cors());
 
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, PUT, POST, DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-//   res.header('Access-Control-Allow-Credentials', true);
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, PUT, POST, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
   
 app.use('/api/user',userRouter);
 app.use('/api/new',newsrouter);
