@@ -14,8 +14,8 @@ app.use(express.urlencoded({ extended: true }))
 mongoose.connect(CONNECTION_STRING)
 .then(res=>console.log('connect'))
 .catch(err=>console.log(err))
-// app.options("*", cors({ origin: ['http://localhost:19008', 'http://localhost:8082'], optionsSuccessStatus: 200 }));
-app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
+app.options("*", cors({ origin: ['http://localhost:19006', 'http://localhost:8082'], optionsSuccessStatus: 200 }));
+// app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
