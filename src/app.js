@@ -15,7 +15,7 @@ mongoose.connect(CONNECTION_STRING)
 .then(res=>console.log('connect'))
 .catch(err=>console.log(err))
 // app.options("*", cors({ origin: ['http://localhost:19006', 'http://localhost:8082', 'https://bankapi-2puz.onrender.com'], optionsSuccessStatus: 200 }));
-app.use(cors({ origin: 'http://localhost:19006'}));
+// app.use(cors({ origin: 'http://localhost:19006'}));
 // app.options('*', cors());
 
 // app.use(function(req, res, next) {
@@ -25,6 +25,28 @@ app.use(cors({ origin: 'http://localhost:19006'}));
 //   res.header('Access-Control-Allow-Credentials', true);
 //   next();
 // });
+
+const allowedOrigins = ['http://localhost:19006', 'http://localhost:8082', 'https://bankapi-2puz.onrender.com'];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified origin.';
+      return callback(new Error(msg), false);
+    }
+    
+    return callback(null, true);
+  },
+  credentials: true
+}));
+
+app.options('*', cors({
+  origin: allowedOrigins,
+  optionsSuccessStatus: 200,
+  credentials: true
+}));
   
 app.use('/api/user',userRouter);
 app.use('/api/new',newsrouter);
