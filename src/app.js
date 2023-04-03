@@ -7,8 +7,6 @@ require('dotenv').config();
 const userRouter = require('./api/routers/user');
 const User = require('./models/user');
 const newsrouter =require('./api/routers/newsrouter')
-const chat = require('../src/api/routers/chatrouter')
-const cover =require('../src/api/routers/converroter')
 app.use(cors({origin: '*'}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -22,8 +20,7 @@ mongoose.connect(CONNECTION_STRING)
 
 app.use('/api/user',userRouter);
 app.use('/api/new',newsrouter);
-app.use('/api/user' , chat)
-app.use('/api/user' , cover)
+
 
 
 
