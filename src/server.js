@@ -5,27 +5,21 @@
     const socketio = require('socket.io')
     const server = http.createServer(app)
     const { Server } = require("socket.io");
+    const io = require('socket.io')(http);
 
 
-    const io = new Server(server, {
-        cors: {
-          origin: "*",
-          methods: ["GET", "POST"],
-        },
+    io.on('connection', (socket) => {
+      console.log('A user connected');
+    
+      socket.on('message', (data) => {
+        console.log('Message received: ' + data.message);
+        io.emit('message', data);
       });
-      io.on("connection", (socket) => {
-        console.log(`User Connected`);
-      
-        socket.on("join_room", (data) => {
-          socket.join(data);
-          console.log(`User Connected: ${socket.id}`);
-
-        });
-      
-        socket.on("send_message", (data) => {
-          io.to(data.room).emit("receive_message", data);
-        });
+    
+      socket.on('disconnect', () => {
+        console.log('A user disconnected');
       });
+    });
       
     server.listen(8082)
 
