@@ -13,16 +13,17 @@
           methods: ["GET", "POST"],
         },
       });
-      
       io.on("connection", (socket) => {
-        console.log(`User Connected: ${socket.id}`);
+        console.log(`User Connected`);
       
         socket.on("join_room", (data) => {
           socket.join(data);
+          console.log(`User Connected: ${socket.id}`);
+
         });
       
         socket.on("send_message", (data) => {
-          socket.to(data.room).emit("receive_message", data);
+          io.to(data.room).emit("receive_message", data);
         });
       });
       
