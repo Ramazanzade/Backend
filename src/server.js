@@ -4,8 +4,7 @@
     require('dotenv').config();
     const socketio = require('socket.io')
     const server = http.createServer(app)
-    const { Server } = require("socket.io");
-    const io = require('socket.io')(http);
+    const io = require('socket.io')(server);
 
 
     io.on('connection', (socket) => {
