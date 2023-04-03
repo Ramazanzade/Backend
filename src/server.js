@@ -4,8 +4,11 @@
     require('dotenv').config();
     const socketio = require('socket.io')
     const server = http.createServer(app)
-    const io = require('socket.io')(server);
-
+    const io = require('socket.io')(server, {
+      cors: {
+        origin: '*',
+      }
+    });    
 
     io.on('connection', (socket) => {
       console.log('A user connected');
