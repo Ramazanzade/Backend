@@ -1,11 +1,11 @@
 const { Schema, model } = require('mongoose');
 
-const NewSchema = new Schema({
+const NewSchema1 = new Schema({
   text: String,
   date: String,
   title: String,
 });
 
-const news = model('News', NewSchema);
+const news1 = model('News', NewSchema1);
 
-module.exports = { news };
+module.exports = { news1 };

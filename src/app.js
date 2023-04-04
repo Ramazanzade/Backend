@@ -7,6 +7,8 @@ require('dotenv').config();
 const userRouter = require('./api/routers/user');
 const User = require('./models/user');
 const newsrouter =require('./api/routers/newsrouter')
+const newsrouter1 =require('./api/routers/newsrouter1')
+const newsrouter2 =require('./api/routers/newsrouter2')
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -19,6 +21,9 @@ app.options("*", cors({ origin: '*', optionsSuccessStatus: 200 }));
 
 app.use('/api/user',userRouter);
 app.use('/api/new',newsrouter);
+app.use('/api/new1',newsrouter1);
+app.use('/api/new2',newsrouter2);
+
 
 
 

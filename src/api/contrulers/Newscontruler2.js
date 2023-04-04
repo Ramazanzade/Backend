@@ -1,10 +1,10 @@
-const { news } = require("../../models/news");
+const { news2 } = require("../../models/news2");
 
 
-const Newscontruler = {
+const Newscontruler2 = {
   add: async (req, res) => {
     const body = req.body;
-    let product = new news({
+    let product = new news2({
      title: body.title,
       date: body.date,
       text: body.text,
@@ -19,7 +19,7 @@ const Newscontruler = {
   },
   getAll: async (req, res) => {
     try {
-        const products = await news.find();
+        const products = await news2.find();
         if (products.length > 0) {
             res.send(products);
         } else {
@@ -33,7 +33,7 @@ const Newscontruler = {
 
   delete: async (req, res) => {
     try {
-      const result = await news.deleteOne({ _id: req.params.id });
+      const result = await news2.deleteOne({ _id: req.params.id });
       res.send(result);
     } catch (error) {
       console.error(error);
@@ -42,7 +42,7 @@ const Newscontruler = {
   },
 
   update: async (req, res) => {
-    const result = await news.findOne({ _id: req.params.id });
+    const result = await news2.findOne({ _id: req.params.id });
     if (result) {
       res.send(result);
     } else {
@@ -50,7 +50,7 @@ const Newscontruler = {
     }
   },
   put: async (req, res) => {
-    const result = await news.updateOne(
+    const result = await news2.updateOne(
       { _id: req.params.id },
       { $set: req.body }
     );
@@ -58,4 +58,4 @@ const Newscontruler = {
   },
 };
 
-module.exports = { Newscontruler }
+module.exports = { Newscontruler2 }
