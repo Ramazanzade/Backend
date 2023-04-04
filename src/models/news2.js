@@ -6,6 +6,6 @@ const NewSchema2 = new Schema({
   title: String,
 });
 
-const news2 = model('News', NewSchema2);
+const news2 = model('News2', NewSchema2);
 
 module.exports = { news2 };
