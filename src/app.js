@@ -23,7 +23,12 @@ app.use('/api/user',userRouter);
 app.use('/api/new',newsrouter);
 app.use('/api/new1',newsrouter1);
 app.use('/api/new2',newsrouter2);
-
+app.post('/audio', (req, res) => {
+    const audioData = req.body.audioData;
+    const fs = require('fs');
+    fs.writeFileSync('/path/to/save/audio.wav', audioData);
+      res.send('Audio data received and saved successfully');
+  });
 
 
 
